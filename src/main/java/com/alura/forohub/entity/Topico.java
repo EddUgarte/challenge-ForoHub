@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Table(name = "topicos")
+@Table(name = "topicos2")
 @Entity(name = "Topico")
 public class Topico {
 
@@ -16,8 +16,10 @@ public class Topico {
     private Date fechaCreacion;
     private String estadoDelTopico;
     @ManyToOne
+    //@JoinColumn(name = "autor_id")
     private Autor autor;
     @ManyToOne
+    //@JoinColumn(name = "curso_id")
     private Curso curso;
 
     //Constructores
@@ -90,7 +92,6 @@ public class Topico {
     }
 
     //toString
-
 
     @Override
     public String toString() {

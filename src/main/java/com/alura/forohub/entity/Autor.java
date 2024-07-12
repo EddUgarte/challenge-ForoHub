@@ -2,6 +2,8 @@ package com.alura.forohub.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table(name = "autores")
 @Entity(name = "Autor")
 public class Autor {
@@ -12,6 +14,8 @@ public class Autor {
     private String nombre;
     private String email;
     private String contrasena;
+    //@OneToMany(mappedBy = "autor")
+    //private List<Topico> topicos;
 
     //Constructores
 
@@ -24,6 +28,7 @@ public class Autor {
         this.email = email;
         this.contrasena = contrasena;
     }
+
 
     //Getter y Setter
 
@@ -57,13 +62,14 @@ public class Autor {
 
     //toString
 
-
     @Override
     public String toString() {
         return "Autor{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
+                ", contrasena='" + contrasena + '\'' +
                 '}';
     }
 }
+

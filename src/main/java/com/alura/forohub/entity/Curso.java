@@ -2,6 +2,8 @@ package com.alura.forohub.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table(name = "cursos")
 @Entity(name = "Curso")
 public class Curso {
@@ -12,6 +14,8 @@ public class Curso {
     private String nombre;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+    //@OneToMany(mappedBy = "curso")
+    //private List<Topico> topicos;
 
     //Constructores
 
@@ -47,7 +51,6 @@ public class Curso {
     }
 
     //toString
-
 
     @Override
     public String toString() {
