@@ -3,10 +3,12 @@ package com.alura.forohub.controller;
 import com.alura.forohub.entity.DatosListadoTopico;
 import com.alura.forohub.entity.DatosRegistroTopico;
 import com.alura.forohub.entity.DatosRespuestaTopico;
+import com.alura.forohub.entity.DatosActualizarTopico;
 import com.alura.forohub.service.TopicoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +35,14 @@ public class TopicoController {
         return topicoService.encuentraTopicoPorId(id);
     }
 
+    @PutMapping
+    public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
+        topicoService.actualizarTopicoPorId(datosActualizarTopico);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarTopico (@PathVariable Long id) {
+        topicoService.eliminarTopicoPorId(id);
+    }
 
 }

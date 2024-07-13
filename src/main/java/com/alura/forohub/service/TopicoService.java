@@ -76,4 +76,20 @@ public class TopicoService {
         }
         return null;
     }
+
+    @Transactional
+    public void actualizarTopicoPorId(DatosActualizarTopico datosActualizarTopico) {
+        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+        topico.actualizarDatos(datosActualizarTopico);
+    }
+
+    @Transactional
+    public void eliminarTopicoPorId(Long id) {
+        Optional<Topico> t1 = topicoRepository.findById(id);
+        if(t1.isPresent()) {
+           topicoRepository.deleteById(id);
+        } else {
+            throw new RuntimeException();
+        }
+    }
 }
