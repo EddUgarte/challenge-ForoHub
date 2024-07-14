@@ -113,5 +113,7 @@ public class Topico {
         if(datosActualizarTopico.mensaje() != null) {
             this.mensaje = datosActualizarTopico.mensaje();
         }
+        //Actualizar el estatus de nuevo a updated
+        this.estadoDelTopico = "updated";
     }
 }

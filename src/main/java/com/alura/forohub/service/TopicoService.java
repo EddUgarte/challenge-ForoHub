@@ -27,7 +27,7 @@ public class TopicoService {
     private CursoRepository cursoRepository;
 
     @Transactional
-    public void guardarTopico(DatosRegistroTopico datosRegistroTopico) {
+    public Topico guardarTopico(DatosRegistroTopico datosRegistroTopico) {
         Topico t1 = new Topico();
         try {
             //validarTitulo(datosRegistroTopico.titulo());
@@ -54,6 +54,7 @@ public class TopicoService {
             t1.setCurso(c1.get());
         }
         topicoRepository.save(t1);
+        return t1;
     }
 
 
@@ -78,9 +79,10 @@ public class TopicoService {
     }
 
     @Transactional
-    public void actualizarTopicoPorId(DatosActualizarTopico datosActualizarTopico) {
+    public Topico actualizarTopicoPorId(DatosActualizarTopico datosActualizarTopico) {
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
         topico.actualizarDatos(datosActualizarTopico);
+        return topico;
     }
 
     @Transactional

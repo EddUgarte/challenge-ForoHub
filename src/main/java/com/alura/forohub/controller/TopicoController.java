@@ -1,16 +1,14 @@
 package com.alura.forohub.controller;
 
-import com.alura.forohub.entity.DatosListadoTopico;
-import com.alura.forohub.entity.DatosRegistroTopico;
-import com.alura.forohub.entity.DatosRespuestaTopico;
-import com.alura.forohub.entity.DatosActualizarTopico;
+import com.alura.forohub.entity.*;
 import com.alura.forohub.service.TopicoService;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,28 +19,35 @@ public class TopicoController {
     private TopicoService topicoService;
 
     @PostMapping
-    public void registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico) {
-        topicoService.guardarTopico(datosRegistroTopico);
+    public ResponseEntity<DatosRespuestaTopico> registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico,
+                                                                UriComponentsBuilder uriComponentsBuilder) {
+        Topico t1 = topicoService.guardarTopico(datosRegistroTopico);
+        DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(t1);
+        //url donde encontrar la info de ese topico
+        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(t1.getId()).toUri();
+        return ResponseEntity.created(url).body(datosRespuestaTopico);
     }
 
     @GetMapping
-    public List<DatosListadoTopico> listadoTopicos() {
-        return topicoService.listarTopicos();
+    public ResponseEntity<List<DatosListadoTopico>> listadoTopicos() {
+        return ResponseEntity.ok(topicoService.listarTopicos());
     }
 
     @GetMapping("/{id}")
-    public DatosRespuestaTopico retornaTopicoPorId(@PathVariable Long id) {
-        return topicoService.encuentraTopicoPorId(id);
+    public ResponseEntity<DatosRespuestaTopico> retornaTopicoPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(topicoService.encuentraTopicoPorId(id));
     }
 
     @PutMapping
-    public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
-        topicoService.actualizarTopicoPorId(datosActualizarTopico);
+    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
+        Topico t1 = topicoService.actualizarTopicoPorId(datosActualizarTopico);
+        return ResponseEntity.ok(new DatosRespuestaTopico(t1));
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarTopico (@PathVariable Long id) {
+    public ResponseEntity eliminarTopico (@PathVariable Long id) {
         topicoService.eliminarTopicoPorId(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -14,8 +14,6 @@ public class Curso {
     private String nombre;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
-    //@OneToMany(mappedBy = "curso")
-    //private List<Topico> topicos;
 
     //Constructores
 
