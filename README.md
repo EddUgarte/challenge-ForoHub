@@ -4,8 +4,7 @@
 Aplicación que gestiona el Backend de un Foro; los usuarios podrán CREAR, LISTAR, ACTUALIZAR o ELIMINAR los Tópicos que correspondan a su cuenta siempre y cuando su usuario y contraseña estén registrados en la plataforma y tengan los permisos para hacerlo ya que la aplicación cuenta con una capa de Seguridad que permite y/o bloquea ciertas acciones dependiendo el rol que cada usuario posee.
 
 <h3> FUNCIONAMIENTO </h3>
-Para probar la API, se cuenta con los endpoint necesarios para el CRUD básico y uno más para el LOGIN, como se muestra en la imagen
-![image](https://github.com/user-attachments/assets/8507fade-a397-4615-83ff-7d6703ac696b)
+Para probar la API, se cuenta con los endpoint necesarios para el CRUD básico y uno más para el LOGIN.
 
 Si intentamos realizar una acción, como un listado de todos los Topicos existentes, sin estar Autenticados correctamente, la respuesta será un cógido HTTP 403 Forbidden (No permitido)
 ![image](https://github.com/user-attachments/assets/57a2107a-fa1e-436c-a8ff-245074b461e7)
